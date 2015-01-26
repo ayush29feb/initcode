@@ -1,0 +1,16 @@
+{
+  "name": "CodeInit",
+  "version": "0.0.1",
+  "description": "A command-line tool to make structral project files",
+  "main": "index.js",
+  "bin": "./index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Ayush Saraf <ayush29f@uw.edu>",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.6.0",
+    "optimist": "^0.6.1"
+  }
+}
