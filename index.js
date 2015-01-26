@@ -12,10 +12,14 @@ program
     .usage('<language> <File> <FolderName>')
     .parse(process.argv);
 
+
 if(program.args.length != 3) {
 	program.help();
 } else {
-	var writer = writers[program.args[0]];
+	writers.load(program.args[1], function(data){
+		var writer = writers.writer[program.args[0]];
+		writer.read(data);
+	})
 }
 
 

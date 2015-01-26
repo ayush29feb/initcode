@@ -1,8 +1,14 @@
-var fs = require('fs');
+var fs = require('fs'),
+	str = require('string');
 
 module.exports = {
-	lang: "java",
-	write: function(file) {
+	data: null,
+	files: [],
+	read: function(data) {
+		var lines = str(data).lines();
+		console.log(lines);
+	},
+	write: function(dir) {
 
 	}
 }

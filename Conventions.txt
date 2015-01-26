@@ -1,3 +1,11 @@
+_ Means Defaults
+	methods are public
+	feilds are private
+Automatically writes the get and set methods
+Default return type for methods is void
+-g is getter
+-s setter
+
 JavaFormat
 ClassName
 	-fieldName fieldType (empty)/private/pri/public/pub/etc...
