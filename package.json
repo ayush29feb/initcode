@@ -10,7 +10,6 @@
   "author": "Ayush Saraf <ayush29f@uw.edu>",
   "license": "MIT",
   "dependencies": {
-    "commander": "^2.6.0",
-    "optimist": "^0.6.1"
+    "commander": "^2.6.0"
   }
 }
