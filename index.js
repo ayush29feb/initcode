@@ -1,25 +1,34 @@
 #!/usr/bin/env node
 
 var fs = require('fs'),
-	argv = require('optimist').argv,
+	readline = require('readline'),
 	program = require('commander'),
 	repl = require('repl');
 
+var writers = require('./writers');
+
 program
     .version('0.0.1')
-    .usage('<keywords>')
+    .usage('<language> <File> <FolderName>')
     .parse(process.argv);
 
-console.log(program.args);
+if(program.args.length != 3) {
+	program.help();
+} else {
+	var writer = writers[program.args[0]];
+}
 
-// var json = {
-// 	"lang": argv.lang
-// };
 
-// fs.writeFile("schema.json", JSON.stringify(json, null, 4), function(err){
-// 	if(err){
-// 		console.log(err);
-// 	} else {
-// 		console.log("Awesome! It works.");
-// 	}
+// ReadingFile
+// fs.readFile(program.args[0], 'utf8', function (err, data) {
+//   if (err) {
+//     return console.log(err);
+//   }
+//   console.log(data);
+// });
+
+// Command Line Input
+// var rl = readline.createInterface({
+//   input: process.stdin,
+//   output: process.stdout
 // });

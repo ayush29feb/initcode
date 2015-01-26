@@ -1,0 +1,8 @@
+java
+Employee
+	-age int
+	-name String pri
+	-sex char private
+	--setAge void pri
+	--getAge int private
+	
