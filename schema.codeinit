@@ -1,11 +1,12 @@
-Employee
-	-name
-	-age
-	--getAge
-	--getName
-	--setName
-	--setAge
+Employee -m
+	-name -String -private
+	-age -int -private
+	--getAge -() -int -public
+	--getName -() -String -public
+	--setName -(String name) -void -public
+	--setAge -(int age) -void -public
 	Clerical
+		-boss String private
 		Secretary
 			LegalSecretary
 	Professional

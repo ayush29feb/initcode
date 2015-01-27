@@ -29,22 +29,24 @@ var readClass = function(data, files, superClass) {
 			// Methods
 			curLine = curLine.substr(1);
 			if(curLine.startsWith('--')) {
-				curLine = curLine.substr(2);
+				curLine = curLine.substr(2).s;
+				var props = curLine.split(' -');
 				var method = {
-					name: curLine.substr(0, curLine.indexOf(' ')).s,
-					type: 'void',
-					access: 'public',
-					param: 'int x'
+					name: props[0],
+					type: props[2],
+					access: props[3],
+					param: props[1].substring(1, props[1].length - 1)
 				}
 				code.methods.push(method);
 			} 
 			// Fields
 			else if (curLine.startsWith('-')) {
-				curLine = curLine.substr(1);
+				curLine = curLine.substr(1).s;
+				var props = curLine.split(' -');
 				var field = {
-					name: curLine.substr(0, curLine.indexOf(' ')).s,
-					type: 'int',
-					access:'private'
+					name: props[0],
+					type: props[1],
+					access: props[2]
 				}
 				code.fields.push(field);
 			} 
@@ -86,7 +88,10 @@ var writeClass = function(codeObject, dir) {
 	for(var i = 0; i < codeObject.methods.length; i++){
 		fileData += snippents.method(codeObject.methods[i]);
 	}
-	fileData += '\n';
+
+	if(codeObject.isMain){
+		fileData += snippents.mainclass() + '\n';
+	}
 
 	fileData += '}';
 	// Create the file
@@ -112,7 +117,12 @@ var snippents = {
 	},
 
 	method: function(method) {
-		var result = '\t' + method.access + ' ' + method.type + ' ' + method.name + '(' + method.param + ') {\n\n\t}\n';
+		var result = '\t' + method.access + ' ' + method.type + ' ' + method.name + '(' + method.param + ') {\n\n\t}\n\n';
+		return result;
+	},
+
+	mainclass: function() {
+		var result = "\tpublic static void main(String[] args) {\n\t\tSystem.out.println('Hello World!');\n\t}";
 		return result;
 	}
 }

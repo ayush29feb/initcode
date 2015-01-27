@@ -1,19 +1,25 @@
 public class Employee {
 
-	private int name;
-	private int age;
+	private  String name;
+	private  int age;
 
-	public void getAge(int x) {
-
-	}
-	public void getName(int x) {
-
-	}
-	public void setName(int x) {
-
-	}
-	public void setAge(int x) {
+	public  int getAge() {
 
 	}
 
+	public  String getName() {
+
+	}
+
+	public  void setName(String name) {
+
+	}
+
+	public  void setAge(int age) {
+
+	}
+
+	public static void main(String[] args) {
+		System.out.println('Hello World!');
+	}
 }
