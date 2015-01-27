@@ -31,7 +31,10 @@ var readClass = function(data, files, superClass) {
 			if(curLine.startsWith('--')) {
 				curLine = curLine.substr(2);
 				var method = {
-					name: curLine.substr(0, curLine.indexOf(' ')).s
+					name: curLine.substr(0, curLine.indexOf(' ')).s,
+					type: 'void',
+					access: 'public',
+					param: 'int x'
 				}
 				code.methods.push(method);
 			} 
@@ -47,7 +50,18 @@ var readClass = function(data, files, superClass) {
 			} 
 			// Subclass
 			else {
-				readClass(curLine.s, files, code.className);
+				var subData = '';
+				while(i < lines.length){
+					curLine = str(lines[i] + ' ');
+					subData += curLine.substr(1).s + '\n';
+					i++;
+				}
+				subData = subData.substring(0, subData.length - 1);
+				var oneSubClassArr = getClassBlocks(subData);
+				console.log(oneSubClassArr);
+				for(var j = 0; j < oneSubClassArr.length; j++) {
+					readClass(oneSubClassArr[j], files, code.className);
+				}
 			}
 		}
 	}
@@ -66,6 +80,12 @@ var writeClass = function(codeObject, dir) {
 	// Fields Defination
 	for(var i = 0; i < codeObject.fields.length; i++){
 		fileData += snippents.field(codeObject.fields[i]);
+	}
+	fileData += '\n';
+
+	//Methods defs
+	for(var i = 0; i < codeObject.methods.length; i++){
+		fileData += snippents.method(codeObject.methods[i]);
 	}
 	fileData += '\n';
 
@@ -90,6 +110,11 @@ var snippents = {
 	field: function(field) {
 		var result = '\t' + field.access + ' ' + field.type + ' ' + field.name + ';\n';
 		return result;
+	},
+
+	method: function(method) {
+		var result = '\t' + method.access + ' ' + method.type + ' ' + method.name + '(' + method.param + ') {\n\n\t}\n';
+		return result;
 	}
 }
 
@@ -107,13 +132,12 @@ var getClassBlocks = function(data) {
 		if(curLine.startsWith('\t')) {
 			block += curLine.s + '\n';
 		} else {
-			result.push(block);
+			result.push(block.substring(0, block.length - 1));
 			block = curLine.s + '\n';
 		}
 	}
-	result.push(block);
+	result.push(block.substring(0, block.length - 1));
 	result = result.slice(1);
-	console.log(result);
 	return result;
 }
 
@@ -121,7 +145,6 @@ module.exports = {
 	data: null,
 	files: [],
 	read: function(data) {
-		getClassBlocks(data);
 		var oneClassArr = getClassBlocks(data);
 		for(var i = 0; i < oneClassArr.length; i++) {
 			readClass(oneClassArr[i], this.files);
