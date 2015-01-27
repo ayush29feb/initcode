@@ -25,10 +25,3 @@ if(program.args.length != 3) {
 		writer.write(program.args[2]);
 	})
 }
-
-
-// Command Line Input
-// var rl = readline.createInterface({
-//   input: process.stdin,
-//   output: process.stdout
-// });

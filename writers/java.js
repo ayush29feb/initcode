@@ -58,7 +58,6 @@ var readClass = function(data, files, superClass) {
 				}
 				subData = subData.substring(0, subData.length - 1);
 				var oneSubClassArr = getClassBlocks(subData);
-				console.log(oneSubClassArr);
 				for(var j = 0; j < oneSubClassArr.length; j++) {
 					readClass(oneSubClassArr[j], files, code.className);
 				}
@@ -93,7 +92,7 @@ var writeClass = function(codeObject, dir) {
 	// Create the file
 	fs.writeFile(dir + '/' + codeObject.className + '.java', fileData, function(err) {
 	    if(err) { console.log(err); } 
-	    else { console.log("Create " + dir + '/' + codeObject.className + '.java'); }
+	    else { console.log("Created " + dir + '/' + codeObject.className + '.java'); }
 	});
 }
 

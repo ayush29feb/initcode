@@ -1,12 +1,13 @@
-Person
+Employee
+	-name
 	-age
-	-sex
-	-origin
-	--getage
-	--setsex
-	Boy
-		-age
-	Girl
-		-dope
-		Awesome
-			-itworkd
+	--getAge
+	--getName
+	--setName
+	--setAge
+	Clerical
+		Secretary
+			LegalSecretary
+	Professional
+		Lawyers
+		Engineers

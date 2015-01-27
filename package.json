@@ -1,5 +1,5 @@
 {
-  "name": "CodeInit",
+  "name": "initcode",
   "version": "0.0.1",
   "description": "A command-line tool to make structral project files",
   "main": "index.js",
