@@ -19,6 +19,10 @@ if(program.args.length != 3) {
 	writers.load(program.args[1], function(data){
 		var writer = writers.writer[program.args[0]];
 		writer.read(data);
+		if (!fs.existsSync(program.args[2])){
+		    fs.mkdirSync(program.args[2]);
+		}
+		writer.write(program.args[2]);
 	})
 }
 
