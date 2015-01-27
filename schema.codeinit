@@ -1,7 +1,7 @@
 Person -m
 	-age int _ -gs
 	-name String pri -g
- 	-sex char private -g
-	Employee
-		-title String -g
-		-salary int -gs
+	-sex char private -g
+	--talk
+	Men
+	Women
